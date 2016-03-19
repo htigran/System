@@ -15,9 +15,7 @@
 int main(int argc, const char * argv[]) {
     
     tsocket client;
-    client.bind(5100);
-    client.listen();
-    client.accept();
-    std::cout << client.recv() << std::endl;
+    client.connect("127.0.0.1", 5100);
+    client.send("Hello");
     return 0;
 }

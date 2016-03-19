@@ -63,6 +63,7 @@
 		98BE81F31C9D62080042CDBF = {
 			isa = PBXGroup;
 			children = (
+				98BE821F1C9D63040042CDBF /* tsocket */,
 				98BE820B1C9D622E0042CDBF /* client */,
 				98BE82161C9D62460042CDBF /* server */,
 				98BE81FD1C9D62080042CDBF /* Products */,
@@ -90,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				98BE82171C9D62460042CDBF /* main.cpp */,
-				98BE821F1C9D63040042CDBF /* tsocket */,
 			);
 			path = server;
 			sourceTree = "<group>";
@@ -102,6 +102,7 @@
 				98BE821D1C9D62FF0042CDBF /* tsocket.hpp */,
 			);
 			name = tsocket;
+			path = server;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
