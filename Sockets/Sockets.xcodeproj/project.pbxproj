@@ -10,6 +10,7 @@
 		98BE820D1C9D622E0042CDBF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE820C1C9D622E0042CDBF /* main.cpp */; };
 		98BE82181C9D62460042CDBF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE82171C9D62460042CDBF /* main.cpp */; };
 		98BE821E1C9D62FF0042CDBF /* tsocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE821C1C9D62FF0042CDBF /* tsocket.cpp */; };
+		98BE82221C9D79380042CDBF /* dbg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE82201C9D79380042CDBF /* dbg.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,8 @@
 		98BE82171C9D62460042CDBF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		98BE821C1C9D62FF0042CDBF /* tsocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tsocket.cpp; path = tsocket/tsocket.cpp; sourceTree = SOURCE_ROOT; };
 		98BE821D1C9D62FF0042CDBF /* tsocket.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = tsocket.hpp; path = tsocket/tsocket.hpp; sourceTree = SOURCE_ROOT; };
+		98BE82201C9D79380042CDBF /* dbg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dbg.cpp; path = dbg/dbg.cpp; sourceTree = "<group>"; };
+		98BE82211C9D79380042CDBF /* dbg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = dbg.hpp; path = dbg/dbg.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 		98BE81F31C9D62080042CDBF = {
 			isa = PBXGroup;
 			children = (
+				98BE82231C9D793E0042CDBF /* dbg */,
 				98BE821F1C9D63040042CDBF /* tsocket */,
 				98BE820B1C9D622E0042CDBF /* client */,
 				98BE82161C9D62460042CDBF /* server */,
@@ -103,6 +107,15 @@
 			);
 			name = tsocket;
 			path = server;
+			sourceTree = "<group>";
+		};
+		98BE82231C9D793E0042CDBF /* dbg */ = {
+			isa = PBXGroup;
+			children = (
+				98BE82201C9D79380042CDBF /* dbg.cpp */,
+				98BE82211C9D79380042CDBF /* dbg.hpp */,
+			);
+			name = dbg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98BE820D1C9D622E0042CDBF /* main.cpp in Sources */,
+				98BE82221C9D79380042CDBF /* dbg.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +294,7 @@
 		98BE820F1C9D622E0042CDBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -294,6 +309,7 @@
 		98BE821A1C9D62460042CDBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -324,6 +340,7 @@
 				98BE82101C9D622E0042CDBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98BE82191C9D62460042CDBF /* Build configuration list for PBXNativeTarget "server" */ = {
 			isa = XCConfigurationList;
@@ -332,6 +349,7 @@
 				98BE821B1C9D62460042CDBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

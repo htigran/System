@@ -13,6 +13,16 @@
 #include <arpa/inet.h>
 #include <iostream>
 
+#include "dbg.hpp"
+
+#define SAFE(A) \
+if ((A) == -1) { \
+    std::cerr << "tsocket error" << __LINE__ << std::endl; \
+    exit(5); \
+}
+
+
+
 class tsocket
 {
 private:
@@ -25,19 +35,12 @@ public:
     : m_queueLimit(1)
     {
         m_sockid = socket(PF_INET, SOCK_STREAM, 0);
+        DBG_MESSAGE("Socket created");
     }
     
     ~tsocket() {
-        int status = close(m_sockid);
-        if (status != 0) {
-            std::cerr << "Can't close the socket" << std::endl;
-            exit(-5);
-        }
-#ifdef DEBUG
-        else {
-            std::cout << "Socket created" << std::endl;
-        }
-#endif
+        SAFE(close(m_sockid));
+        DBG_MESSAGE("Socket closed");
     }
     
     void bind(int port) {
@@ -45,28 +48,13 @@ public:
         addrport.sin_family = AF_INET;
         addrport.sin_port = htons(port);
         addrport.sin_addr.s_addr = htonl(INADDR_ANY);
-        if (::bind (m_sockid, (sockaddr *)&addrport, sizeof(addrport)) != 0) {
-            std::cerr << "Can't bind the port" << std::endl;
-            exit(-1);
-        }
-#ifdef DEBUG
-        else {
-            std::cout << "Binded to port: " << port << std::endl;
-        }
-#endif
+        SAFE(::bind(m_sockid, (sockaddr *)&addrport, sizeof(addrport)));
+        DBG_MESSAGE("Binded to port: " << port);
     }
     
     void listen() {
-        int status = ::listen(m_sockid, m_queueLimit);
-        if (0 != status) {
-            std::cerr << "Can't listen to socket" << std::endl;
-            exit(-2);
-        }
-#ifdef DEBUG
-        else {
-            std::cout << "listening" << std::endl;
-        }
-#endif
+        SAFE(::listen(m_sockid, m_queueLimit));
+        DBG_MESSAGE("Waiting for max " << m_queueLimit << " connections.");
     }
     
     void connect(std::string ip, int port)
@@ -78,51 +66,35 @@ public:
         ::connect(m_sockid, (sockaddr *)&addrport, sizeof(addrport));
     }
     
-    void accept() {
+    int accept() {
         sockaddr_in addrport;
         socklen_t addrlen = sizeof(addrport);
-        ::accept(m_sockid, (sockaddr *)&addrport, &addrlen);
-#ifdef DEBUG
-        std::cout << "accepted" << std::endl;
-#endif
+        int newsockt = ::accept(m_sockid, (sockaddr *)&addrport, &addrlen);
+        DBG_MESSAGE("Accepted connection");
+        return newsockt;
     }
     
     void send(std::string str) {
-        ssize_t count = ::send(m_sockid, str.c_str(), str.size(), 0);
-        if (-1 == count) {
-            std::cerr << "Can't send message: " << str << std::endl;
-            exit(-3);
-        }
-#ifdef DEBUG
-        else {
-            std::cout << "sent: " << str << std::endl;
-        }
-#endif
+        SAFE(::send(m_sockid, str.c_str(), str.size(), 0));
+        DBG_MESSAGE("Sent: " << str);
     }
     
     std::string recv() {
-        int msgLen = 255;
+        return recv(m_sockid);
+    }
+    
+    std::string recv(int sockId) {
+        const int msgLen = 255;
         std::string res;
-        res.reserve(msgLen);
-        ssize_t count = ::recv(m_sockid, &res[0], msgLen, 0);
-        if (-1 == count) {
-            std::cerr << "Can't recieve message" << std::endl;
-            exit(-4);
-        }
-#ifdef DEBUG
-        else {
-            std::cout << "received: " << res << std::endl;
-        }
-#endif
-        
-        return res; // TODO skip buffer copy
+        res.resize(msgLen);
+        SAFE(::recv(sockId, &res[0], msgLen, 0));
+        DBG_MESSAGE("received: " << res);
+        return res;
     }
     
     void setListenersLimit(int maxListeners) {
         m_queueLimit = maxListeners;
-#ifdef DEBUG
-        std::cout << "Max clients number set: " << maxListeners << std::endl;
-#endif
+        DBG_MESSAGE("Set max connections limit: " << maxListeners);
     }
     
 };

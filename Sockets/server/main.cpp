@@ -17,7 +17,8 @@ int main(int argc, const char * argv[]) {
     tsocket server;
     server.bind(5100);
     server.listen();
-    server.accept();
-    std::cout << server.recv() << std::endl;
+    int clSockId = server.accept();
+    server.recv(clSockId);
+    close (clSockId);
     return 0;
 }
