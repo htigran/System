@@ -11,6 +11,8 @@
 		98BE82181C9D62460042CDBF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE82171C9D62460042CDBF /* main.cpp */; };
 		98BE821E1C9D62FF0042CDBF /* tsocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE821C1C9D62FF0042CDBF /* tsocket.cpp */; };
 		98BE82221C9D79380042CDBF /* dbg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE82201C9D79380042CDBF /* dbg.cpp */; };
+		98BE82241C9DCB390042CDBF /* tsocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE821C1C9D62FF0042CDBF /* tsocket.cpp */; };
+		98BE82251C9DCB440042CDBF /* dbg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 98BE82201C9D79380042CDBF /* dbg.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -195,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98BE82241C9DCB390042CDBF /* tsocket.cpp in Sources */,
 				98BE820D1C9D622E0042CDBF /* main.cpp in Sources */,
 				98BE82221C9D79380042CDBF /* dbg.cpp in Sources */,
 			);
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98BE82251C9DCB440042CDBF /* dbg.cpp in Sources */,
 				98BE82181C9D62460042CDBF /* main.cpp in Sources */,
 				98BE821E1C9D62FF0042CDBF /* tsocket.cpp in Sources */,
 			);
@@ -331,7 +335,7 @@
 				98BE82021C9D62080042CDBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		98BE820E1C9D622E0042CDBF /* Build configuration list for PBXNativeTarget "client" */ = {
 			isa = XCConfigurationList;
@@ -340,7 +344,7 @@
 				98BE82101C9D622E0042CDBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		98BE82191C9D62460042CDBF /* Build configuration list for PBXNativeTarget "server" */ = {
 			isa = XCConfigurationList;
@@ -349,7 +353,7 @@
 				98BE821B1C9D62460042CDBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

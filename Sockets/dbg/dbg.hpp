@@ -10,9 +10,9 @@
 #define dbg_hpp
 
 #if DEBUG == 1
-    #define DBG_MESSAGE(A) std::cout << A << std::endl;
+    #define TRACE(A) std::cout << A << std::endl;
 #else
-    #define DBG_MESSAGE(A)
+    #define TRACE(A)
 #endif /* dbg_hpp */
 
 
