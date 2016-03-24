@@ -15,5 +15,10 @@
     #define TRACE(A)
 #endif /* dbg_hpp */
 
+#define SAFE(A) \
+if ((A) == -1) { \
+std::cerr << "tsocket error" << __LINE__ << std::endl; \
+exit(5); \
+}
 
 #endif // dbg_hpp

@@ -6,15 +6,15 @@
 //  Copyright © 2016 Tigran Hovhannisyan. All rights reserved.
 //
 
-#include "tsocket.hpp"
-
 #include <iostream>
 #include <cassert>
+
+#include "../../src/socket.hpp"
 
 
 int main(int argc, const char * argv[]) {
     
-    tsocket client;
+    Socket client;
     client.connect("127.0.0.1", 5100);
     client.send("Hello");
     return 0;

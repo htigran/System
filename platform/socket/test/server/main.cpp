@@ -6,15 +6,15 @@
 //  Copyright © 2016 Tigran Hovhannisyan. All rights reserved.
 //
 
-#include "tsocket.hpp"
-
 #include <iostream>
 #include <cassert>
+
+#include "../../src/socket.hpp"
 
 
 int main(int argc, const char * argv[]) {
     
-    tsocket server;
+    Socket server;
     server.bind(5100);
     server.listen();
     int clSockId = server.accept();
