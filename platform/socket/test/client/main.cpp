@@ -9,7 +9,7 @@
 #include <iostream>
 #include <cassert>
 
-#include "../../src/socket.hpp"
+#include <socket.hpp>
 
 
 int main(int argc, const char * argv[]) {

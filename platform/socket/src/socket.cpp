@@ -8,7 +8,7 @@
 
 #include "socket.hpp"
 
-#include "dbg.hpp"
+#include <dbg.hpp>
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -22,11 +22,11 @@ Socket::Socket(int sockid)
 }
 
 Socket::~Socket() {
-    SAFE(close(m_sockid));
+    //SAFE(close(m_sockid));
     TRACE("Socket closed");
 }
 
-void SocketClient::connect(std::string ip, int port)
+void Socket::connect(std::string ip, int port)
 {
     sockaddr_in addrport;
     addrport.sin_family = AF_INET;
