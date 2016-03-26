@@ -6,19 +6,19 @@
 //  Copyright © 2016 Tigran Hovhannisyan. All rights reserved.
 //
 
-#include "tsocket.hpp"
-
 #include <iostream>
 #include <cassert>
+
+#include <socket_server.hpp>
 
 
 int main(int argc, const char * argv[]) {
     
-    tsocket server;
+	SocketServer server;
     server.bind(5100);
-    server.listen();
-    int clSockId = server.accept();
-    server.recv(clSockId);
-    close (clSockId);
+    server.listen(3);
+    Socket clSockId = server.accept();
+    clSockId.recv();
+    clSockId.close();
     return 0;
 }
