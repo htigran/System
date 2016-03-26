@@ -9,6 +9,8 @@
 #ifndef dbg_hpp
 #define dbg_hpp
 
+#define DEBUG 1
+
 #if DEBUG == 1
     #define TRACE(A) std::cout << A << std::endl;
 #else

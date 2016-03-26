@@ -20,8 +20,14 @@ public:
 	 *
 	 *	Creates the socket object in default state.
 	 */
-    Socket(int sockid);
+    Socket();
     
+	/*! \brief Default constructor
+	 *
+	 *	Creates the socket object in default state.
+	 */
+    Socket(int sockid);
+
 	/*! \brief Destructor
 	 *
 	 *	Destroys and closes the socket object.
@@ -58,6 +64,12 @@ public:
 	 */
     std::string recv(int sockId);
     
+	/*! \brief closes the connection
+	 *
+	 *  ...
+	 */
+    void close();
+
 private:
     int m_sockid;
     

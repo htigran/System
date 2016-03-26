@@ -8,6 +8,10 @@
 #ifndef PLATFORM_SOCKET_SRC_SOCKET_SERVER_HPP_
 #define PLATFORM_SOCKET_SRC_SOCKET_SERVER_HPP_
 
+#include <socket.hpp>
+
+#include <inttypes.h>
+
 class SocketServer {
 public:
 	SocketServer();
@@ -40,7 +44,10 @@ public:
 	 *	\return On success, these system calls return a nonnegative integer
 	 *	that is a descriptor for the accepted socket. On error, -1 is returned.
 	 */
-    int accept();
+    Socket accept();
+
+private:
+    int m_sockid;
 };
 
 #endif /* PLATFORM_SOCKET_SRC_SOCKET_SERVER_HPP_ */

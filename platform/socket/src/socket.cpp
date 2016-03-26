@@ -15,6 +15,11 @@
 #include <iostream>
 
 
+Socket::Socket()
+{
+    m_sockid = socket(PF_INET, SOCK_STREAM, 0);
+    TRACE("Socket created");
+}
 
 Socket::Socket(int sockid)
 : m_sockid(sockid)
@@ -23,6 +28,13 @@ Socket::Socket(int sockid)
 
 Socket::~Socket() {
     //SAFE(close(m_sockid));
+    //SAFE(shutdown(m_sockid, SHUT_RDWR));
+    TRACE("Socket distracted");
+}
+
+void Socket::close() {
+    //SAFE(close(m_sockid));
+    SAFE(shutdown(m_sockid, SHUT_RDWR));
     TRACE("Socket closed");
 }
 

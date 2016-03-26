@@ -7,7 +7,7 @@
 
 #include "socket_server.hpp"
 
-#include "dbg.hpp"
+#include <dbg.hpp>
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -21,7 +21,7 @@ SocketServer::SocketServer() {
 SocketServer::~SocketServer() {
 }
 
-void Socket::bind(uint16_t port) {
+void SocketServer::bind(uint16_t port) {
     sockaddr_in addrport;
     addrport.sin_family = AF_INET;
     addrport.sin_port = htons(port);
@@ -30,16 +30,16 @@ void Socket::bind(uint16_t port) {
     TRACE("Binded to port: " << port);
 }
 
-void Socket::listen(int backlog) {
+void SocketServer::listen(int backlog) {
     SAFE(::listen(m_sockid, backlog));
-    TRACE("Waiting for max " << m_queueLimit << " connections.");
+    TRACE("Waiting for max " << backlog << " connections.");
 }
 
-int Socket::accept() {
+Socket SocketServer::accept() {
     sockaddr_in addrport;
     socklen_t addrlen = sizeof(addrport);
     int newsockt = ::accept(m_sockid, (sockaddr *)&addrport, &addrlen);
     TRACE("Accepted connection");
-    return newsockt;
+    return Socket(newsockt);
 }
 

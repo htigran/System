@@ -2,6 +2,7 @@
 
 add_library(Socket 
     socket.cpp
+    socket_server.cpp
 )
 
 
