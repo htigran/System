@@ -6,6 +6,8 @@ set(modules
     logger
     time
     type_cast
+    mutex
+    semaphore
     )
   
 include(cmake/core.cmake)
