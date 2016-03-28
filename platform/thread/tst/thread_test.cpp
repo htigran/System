@@ -5,9 +5,14 @@
  *      Author: tigran
  */
 
-#include "platform/thread/src/thread.hpp"
+#include <thread.hpp>
 
 namespace platform
 {
 
 } /* namespace platform */
+
+int main()
+{
+
+}
