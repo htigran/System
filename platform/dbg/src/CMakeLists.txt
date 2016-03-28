@@ -1,6 +1,6 @@
 
 
-add_library(Dbg 
+add_library(Dbg SHARED
     dbg.cpp
 )
 

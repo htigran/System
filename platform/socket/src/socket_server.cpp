@@ -19,6 +19,7 @@ SocketServer::SocketServer() {
 }
 
 SocketServer::~SocketServer() {
+
 }
 
 void SocketServer::bind(uint16_t port) {

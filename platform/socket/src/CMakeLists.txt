@@ -1,6 +1,6 @@
 
 
-add_library(Socket 
+add_library(Socket SHARED
     socket.cpp
     socket_server.cpp
 )

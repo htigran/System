@@ -14,7 +14,15 @@
 
 class SocketServer {
 public:
+
+	/*! \brief default constructor
+	 *
+	 */
 	SocketServer();
+
+	/*! \brief destructor
+	 *
+	 */
 	virtual ~SocketServer();
 
 	/*! \brief bind a port to the socket
