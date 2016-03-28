@@ -12,7 +12,8 @@
 
 #include <inttypes.h>
 
-class SocketServer {
+class SocketServer
+{
 public:
 
 	/*! \brief default constructor
@@ -29,7 +30,7 @@ public:
 	 *
 	 *	\param port number
 	 */
-    void bind(uint16_t port);
+	void bind(uint16_t port);
 
 	/*! \brief listen for connections on a socket
 	 *
@@ -39,7 +40,7 @@ public:
 	 *  \param backlog defines the maximum length to which the queue of pending
 	 *  				connections for the socket may grow
 	 */
-    void listen(int backlog);
+	void listen(int backlog);
 
 	/*! \brief accept a connection on the socket
 	 *
@@ -52,10 +53,10 @@ public:
 	 *	\return On success, these system calls return a nonnegative integer
 	 *	that is a descriptor for the accepted socket. On error, -1 is returned.
 	 */
-    Socket accept();
+	Socket accept();
 
 private:
-    int m_sockid;
+	int m_sockid;
 };
 
 #endif /* PLATFORM_SOCKET_SRC_SOCKET_SERVER_HPP_ */
