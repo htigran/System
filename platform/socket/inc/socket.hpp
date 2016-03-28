@@ -15,24 +15,24 @@ class Socket
 {
 
 public:
-    
+
 	/*! \brief Default constructor
 	 *
 	 *	Creates the socket object in default state.
 	 */
-    Socket();
-    
+	Socket();
+
 	/*! \brief Default constructor
 	 *
 	 *	Creates the socket object in default state.
 	 */
-    Socket(int sockid);
+	Socket(int sockid);
 
 	/*! \brief Destructor
 	 *
 	 *	Destroys and closes the socket object.
 	 */
-    ~Socket();
+	~Socket();
 
 	/*! \brief initiate a connection on a socket
 	 *
@@ -42,7 +42,7 @@ public:
 	 *
 	 *  \param port number of the other end
 	 */
-    void connect(std::string ip, int port);
+	void connect(std::string ip, int port);
 
 	/*! \brief  send a message on the socket
 	 *
@@ -50,29 +50,29 @@ public:
 	 *
 	 *  \param msg message to transmit
 	 */
-    void send(std::string msg);
-    
+	void send(std::string msg);
+
 	/*! \brief receive a message from a socket
 	 *
 	 *  Detailed description starts here.
 	 */
-    std::string recv();
-    
+	std::string recv();
+
 	/*! \brief Default constructor
 	 *
 	 *  Detailed description starts here.
 	 */
-    std::string recv(int sockId);
-    
+	std::string recv(int sockId);
+
 	/*! \brief closes the connection
 	 *
 	 *  ...
 	 */
-    void close();
+	void close();
 
 private:
-    int m_sockid;
-    
+	int m_sockid;
+
 };
 
 #endif /* PLATFORM_SOCKET_SRC_SOCKET_HPP_ */
