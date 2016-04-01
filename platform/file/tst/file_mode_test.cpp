@@ -7,6 +7,7 @@
 
 #include "file_mode.h"
 
-namespace platform {
+namespace platform
+{
 
 } /* namespace platform */

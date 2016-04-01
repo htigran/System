@@ -36,10 +36,8 @@ string Time::getTimeDate(string format)
 	now = time(0);
 	tm = localtime(&now);
 
-	while (i < format.length())
-	{
-		switch (format[i])
-		{
+	while (i < format.length()) {
+		switch (format[i]) {
 		case 'd': /* day */
 			if (tm->tm_mday < 10)
 				result.append("0");

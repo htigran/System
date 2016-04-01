@@ -30,7 +30,7 @@ void SocketServer::bind(uint16_t port)
 	addrport.sin_family = AF_INET;
 	addrport.sin_port = htons(port);
 	addrport.sin_addr.s_addr = htonl(INADDR_ANY);
-	SAFE(::bind(m_sockid, (sockaddr *) &addrport, sizeof(addrport)));
+	SAFE(::bind(m_sockid, (sockaddr * ) &addrport, sizeof(addrport)));
 	TRACE("Binded to port: " << port);
 }
 

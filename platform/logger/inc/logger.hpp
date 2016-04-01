@@ -39,7 +39,8 @@ public:
 	 * @param type: the Type of data to log (i.e. DEBUG, ERROR, ...)
 	 * @param indent the indent level
 	 */
-	std::ofstream& log(std::string type, int indent = 0);
+	std::ofstream& log(	std::string type,
+						int indent = 0);
 
 private:
 	std::string getTimeDate();

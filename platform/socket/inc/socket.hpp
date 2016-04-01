@@ -42,7 +42,8 @@ public:
 	 *
 	 *  \param port number of the other end
 	 */
-	void connect(std::string ip, int port);
+	void connect(	std::string ip,
+					int port);
 
 	/*! \brief  send a message on the socket
 	 *

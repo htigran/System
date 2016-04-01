@@ -20,8 +20,8 @@ Socket::Socket()
 	TRACE("Socket created");
 }
 
-Socket::Socket(int sockid) :
-		m_sockid(sockid)
+Socket::Socket(int sockid)
+		: m_sockid(sockid)
 {
 }
 
@@ -35,10 +35,12 @@ Socket::~Socket()
 void Socket::close()
 {
 	//SAFE(close(m_sockid));
-	SAFE (shutdown(m_sockid, SHUT_RDWR));TRACE("Socket closed");
+	SAFE(shutdown(m_sockid, SHUT_RDWR));
+	TRACE("Socket closed");
 }
 
-void Socket::connect(std::string ip, int port)
+void Socket::connect(	std::string ip,
+						int port)
 {
 	sockaddr_in addrport;
 	addrport.sin_family = AF_INET;

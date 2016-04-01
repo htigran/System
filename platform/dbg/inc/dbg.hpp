@@ -12,9 +12,9 @@
 #define DEBUG 1
 
 #if DEBUG == 1
-    #define TRACE(A) std::cout << A << std::endl;
+#define TRACE(A) std::cout << A << std::endl;
 #else
-    #define TRACE(A)
+#define TRACE(A)
 #endif /* dbg_hpp */
 
 #define SAFE(A) \

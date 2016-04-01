@@ -7,6 +7,7 @@
 
 #include <path.h>
 
-namespace platform {
+namespace platform
+{
 
 } /* namespace platform */

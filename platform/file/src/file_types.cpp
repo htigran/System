@@ -7,8 +7,8 @@
 
 #include <file_types.h>
 
-namespace platform {
-
+namespace platform
+{
 
 const string FileTypes::Read = "rb";
 
