@@ -8,7 +8,7 @@ function(prepend var prefix)
 endfunction(prepend)
 
 macro(add_modules)
-    foreach(mod ${modules})
+    foreach(mod ${MODULES})
         
         include(${mod}/src/src.cmake)
 
