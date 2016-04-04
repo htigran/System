@@ -32,9 +32,23 @@ public:
 	 * @return the converted to string
 	 */
 	static string toString(char);
+
+	/**
+	 * @brief Converts a long to a String
+	 * @return the converted to string
+	 */
 	static string toString(long);
+
+	/**
+	 * @brief Converts a float to a String
+	 * @return the converted to string
+	 */
 	static string toString(float);
 
+	/**
+	 * @brief Converts a string to an int
+	 * @return the converted to int
+	 */
 	static int toInt(string);
 };
 

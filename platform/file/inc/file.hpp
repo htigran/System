@@ -6,8 +6,8 @@
 //  Copyright © 2016 TIKO. All rights reserved.
 //
 
-#ifndef file_hpp
-#define file_hpp
+#ifndef PPLATFORM_FILE_INC_FILE_HPP_
+#define PPLATFORM_FILE_INC_FILE_HPP_
 
 #include <file_mode.h>
 #include <path.h>
@@ -33,14 +33,14 @@ class File : public FileTypes
 public:
 
 	/**
-	 * @brief File class constructor. The file is not openned here, to open it you need to call the open() method
+	 * @brief File class constructor. The file is not opened here, to open it you need to call the open() method
 	 * @param p the string path to the file
 	 * @see FileTypes
 	 */
 	File(const string& p);
 
 	/**
-	 * @brief File class constructor. The file is not openned here, to open it you need to call the open() method
+	 * @brief File class constructor. The file is not opened here, to open it you need to call the open() method
 	 * @param p the Path to the file
 	 * @see FileTypes
 	 */
@@ -192,4 +192,4 @@ private:
 
 } /* namespace platform */
 
-#endif // file_hpp
+#endif // PPLATFORM_FILE_INC_FILE_HPP_
