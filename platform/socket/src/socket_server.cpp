@@ -15,37 +15,88 @@
 
 SocketServer::SocketServer()
 {
-	m_sockid = socket(PF_INET, SOCK_STREAM, 0);
-	TRACE("Socket created");
+	m_sockid = ::socket(PF_INET, SOCK_STREAM, 0);
+	if (m_sockid > 0) {
+		m_state = CREATED;
+		TRACE("Socket created");
+	}
 }
 
 SocketServer::~SocketServer()
 {
-
+	if(m_state != CLOSED) {
+		close();
+	}
 }
 
-void SocketServer::bind(uint16_t port)
+SocketServer::Status
+SocketServer::close()
 {
-	sockaddr_in addrport;
-	addrport.sin_family = AF_INET;
-	addrport.sin_port = htons(port);
-	addrport.sin_addr.s_addr = htonl(INADDR_ANY);
-	SAFE(::bind(m_sockid, (sockaddr * ) &addrport, sizeof(addrport)));
+	if(m_state != CREATED) {
+		return ECREATE;
+	}
+
+	//close(m_sockid);
+	if (shutdown(m_sockid, SHUT_RDWR) < 0) {
+		return ECLOSE;
+	}
+
+	m_state = CLOSED;
+	TRACE("Socket closed");
+	return NOERROR;
+}
+
+SocketServer::Status
+SocketServer::bind(uint16_t port)
+{
+    if (m_state != CREATED) {
+        return ECREATE;
+    }
+    bzero((char*) &m_serverAddr, sizeof(m_serverAddr));
+    m_serverAddr.sin_family = AF_INET;
+    m_serverAddr.sin_port = htons(port);
+    m_serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    if (::bind(m_sockid, (sockaddr*) &m_serverAddr, sizeof(m_serverAddr)) < 0) {
+        return EBIND;
+    }
+
+	m_state = BINDED;
 	TRACE("Binded to port: " << port);
+    return NOERROR;
 }
 
-void SocketServer::listen(int backlog)
+SocketServer::Status
+SocketServer::listen(int backlog)
 {
-	SAFE(::listen(m_sockid, backlog));
-	TRACE("Waiting for max " << backlog << " connections.");
+    if (m_state != BINDED) {
+        return EBIND;
+    }
+	if (::listen(m_sockid, backlog) < 0) {
+		return ELISTEN;
+	}
+
+	m_state = LISTEN;
+	TRACE("Listening for max " << backlog << " connections.");
+	return NOERROR;
 }
 
-Socket SocketServer::accept()
+SocketServer::Status
+SocketServer::accept(Socket& accepted)
 {
+	if (m_state != LISTEN) {
+		return ELISTEN;
+	}
 	sockaddr_in addrport;
 	socklen_t addrlen = sizeof(addrport);
 	int newsockt = ::accept(m_sockid, (sockaddr *) &addrport, &addrlen);
+	if (newsockt < 0) {
+		return EACCEPT;
+	}
+	accepted = newsockt;
+
+
 	TRACE("Accepted connection");
-	return (Socket(newsockt));
+	return NOERROR;
 }
 
