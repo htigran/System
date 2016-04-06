@@ -6,6 +6,7 @@
  */
 
 #include <path.h>
+#include <unistd.h>
 
 namespace platform
 {

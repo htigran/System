@@ -10,19 +10,16 @@
 
 #include <socket.hpp>
 
+#include <netinet/in.h>
 #include <inttypes.h>
 
 class SocketServer
 {
 public:
 
-	enum Status {
-		NOERROR = 0,
-		ECREATE,
-		EBIND,
-		ELISTEN,
-		EACCEPT,
-		ECLOSE,
+	enum Status
+	{
+		NOERROR = 0, ECREATE, EBIND, ELISTEN, EACCEPT, ECLOSE,
 	};
 
 	/*! \brief default constructor
@@ -74,11 +71,9 @@ private:
 	int m_sockid;
 	sockaddr_in m_serverAddr;
 
-	enum State {
-		CREATED,
-		BINDED,
-		LISTEN,
-		CLOSED,
+	enum State
+	{
+		INITIAL, CREATED, BINDED, LISTEN, CLOSED,
 	};
 
 	State m_state;

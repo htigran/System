@@ -5,7 +5,7 @@
  *      Author: tigran
  */
 
-#include "/Users/tigran/workspace/system/platform/time/inc/time.hpp"
+#include <time.hpp>
 
 namespace platform
 {

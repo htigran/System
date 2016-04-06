@@ -8,6 +8,9 @@
 
 #include <file.hpp>
 
+namespace platform
+{
+
 File::File(Path& p)
 		: 	m_path(p),
 			m_openned(false)
@@ -247,7 +250,7 @@ int File::readc()
 
 	char c = fgetc(m_f);
 
-	if (ferror(m_f)) {
+	if (ferror (m_f)) {
 		return Eof;
 	}
 
@@ -261,7 +264,7 @@ int File::writec(char c)
 
 	fputc(c, m_f);
 
-	if (ferror(m_f)) {
+	if (ferror (m_f)) {
 		return Eof;
 	}
 
@@ -275,3 +278,5 @@ bool File::eof()
 
 	return feof(m_f);
 }
+
+} // namespace platform
