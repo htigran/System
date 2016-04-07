@@ -5,7 +5,7 @@
  *      Author: tigran
  */
 
-#include <file.h>
+#include <file.hpp>
 
 int main()
 {

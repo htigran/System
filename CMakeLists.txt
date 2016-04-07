@@ -5,3 +5,6 @@ cmake_policy(SET CMP0042 NEW)
 project(SystemProj)
  
 add_subdirectory(platform)
+
+enable_testing()
+include(CTest)
