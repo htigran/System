@@ -16,6 +16,11 @@ class Socket
 
 public:
 
+	enum Status
+	{
+		NOERROR = 0, ECONNECT, ECLOSE, ERECIEVE, ESEND
+	};
+
 	/*! \brief Default constructor
 	 *
 	 *	Creates the socket object in default state.
@@ -42,7 +47,7 @@ public:
 	 *
 	 *  \param port number of the other end
 	 */
-	void connect(	std::string ip,
+	Status connect(	std::string ip,
 					int port);
 
 	/*! \brief  send a message on the socket
@@ -51,13 +56,13 @@ public:
 	 *
 	 *  \param msg message to transmit
 	 */
-	void send(std::string msg);
+	Status send(const std::string& msg);
 
 	/*! \brief receive a message from a socket
 	 *
 	 *  Detailed description starts here.
 	 */
-	std::string recv();
+	Status recv(std::string&);
 
 	/*! \brief Default constructor
 	 *
@@ -69,10 +74,17 @@ public:
 	 *
 	 *  ...
 	 */
-	void close();
+	Status close();
 
 private:
 	int m_sockid;
+
+	enum State
+	{
+		INITIAL, CONNECTED, CLOSED
+	};
+
+	State m_state;
 
 };
 

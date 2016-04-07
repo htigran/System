@@ -14,38 +14,95 @@
 #include <iostream>
 
 SocketServer::SocketServer()
+		: m_state(INITIAL)
 {
-	m_sockid = socket(PF_INET, SOCK_STREAM, 0);
-	TRACE("Socket created");
+	m_sockid = ::socket(PF_INET, SOCK_STREAM, 0);
+	if (m_sockid > 0) {
+		m_state = CREATED;
+		TRACE("Socket created");
+	}
 }
 
 SocketServer::~SocketServer()
 {
-
+	if (m_state != CLOSED) {
+		close();
+	}
 }
 
-void SocketServer::bind(uint16_t port)
+SocketServer::Status SocketServer::close()
 {
-	sockaddr_in addrport;
-	addrport.sin_family = AF_INET;
-	addrport.sin_port = htons(port);
-	addrport.sin_addr.s_addr = htonl(INADDR_ANY);
-	SAFE(::bind(m_sockid, (sockaddr * ) &addrport, sizeof(addrport)));
+	if (m_state == INITIAL) {
+		TRACE("Can't close: Socket is not connected.");
+		return ECREATE;
+	}
+
+	//close(m_sockid);
+	if (int e = shutdown(m_sockid, SHUT_RDWR) < 0) {
+		TRACE("Can't close: (" << e << ")");
+		return ECLOSE;
+	}
+
+	m_state = CLOSED;
+	TRACE("Socket closed");
+	return NOERROR;
+}
+
+SocketServer::Status SocketServer::bind(uint16_t port)
+{
+	if (m_state != CREATED) {
+		TRACE("Can't bind to port:" << port << " Socket is not connected.");
+		return ECREATE;
+	}
+	bzero((char*) &m_serverAddr, sizeof(m_serverAddr));
+	m_serverAddr.sin_family = AF_INET;
+	m_serverAddr.sin_port = htons(port);
+	m_serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+	if (int e = ::bind(m_sockid, (sockaddr*) &m_serverAddr,
+						sizeof(m_serverAddr)) < 0) {
+		TRACE("Can't bind to port:" << port << ". (" << e << "). Port: "
+				<< port);
+		return EBIND;
+	}
+
+	m_state = BINDED;
 	TRACE("Binded to port: " << port);
+	return NOERROR;
 }
 
-void SocketServer::listen(int backlog)
+SocketServer::Status SocketServer::listen(int backlog)
 {
-	SAFE(::listen(m_sockid, backlog));
-	TRACE("Waiting for max " << backlog << " connections.");
+	if (m_state != BINDED) {
+		TRACE("Can't listen: Socket not binded to any port.");
+		return EBIND;
+	}
+	if (int e = ::listen(m_sockid, backlog) < 0) {
+		TRACE("Can't listen: (" << e << ")");
+		return ELISTEN;
+	}
+
+	m_state = LISTEN;
+	TRACE("Listening for max " << backlog << " connections.");
+	return NOERROR;
 }
 
-Socket SocketServer::accept()
+SocketServer::Status SocketServer::accept(Socket& accepted)
 {
+	if (m_state != LISTEN) {
+		TRACE("Can't accept: Socket not listening.");
+		return ELISTEN;
+	}
 	sockaddr_in addrport;
 	socklen_t addrlen = sizeof(addrport);
 	int newsockt = ::accept(m_sockid, (sockaddr *) &addrport, &addrlen);
+	if (newsockt < 0) {
+		TRACE("Can't accept: (" << newsockt << ")");
+		return EACCEPT;
+	}
+	accepted = newsockt;
+
 	TRACE("Accepted connection");
-	return (Socket(newsockt));
+	return NOERROR;
 }
 
