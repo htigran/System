@@ -16,12 +16,9 @@ class Socket
 
 public:
 
-	enum Status {
-		NOERROR = 0,
-		ECONNECT,
-		ECLOSE,
-		ERECIEVE,
-		ESEND
+	enum Status
+	{
+		NOERROR = 0, ECONNECT, ECLOSE, ERECIEVE, ESEND
 	};
 
 	/*! \brief Default constructor
@@ -82,9 +79,9 @@ public:
 private:
 	int m_sockid;
 
-	enum State {
-		CONNECTED,
-		CLOSED
+	enum State
+	{
+		INITIAL, CONNECTED, CLOSED
 	};
 
 	State m_state;

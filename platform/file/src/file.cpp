@@ -13,13 +13,15 @@ namespace platform
 
 File::File(Path& p)
 		: 	m_path(p),
-			m_openned(false)
+			m_openned(false),
+			m_f(NULL)
 {
 }
 
 File::File(const string& p)
 		: 	m_path(p),
-			m_openned(false)
+			m_openned(false),
+			m_f(NULL)
 {
 }
 
