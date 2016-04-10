@@ -5,7 +5,8 @@
  *      Author: thovhann
  */
 
-#include <path.h>
+#include "../inc/path.hpp"
+
 #include <unistd.h>
 
 namespace platform

@@ -1,4 +1,4 @@
 
-add_test(mutex_test 
+addTest(mutex_test 
     mutex_test.cpp
 )
