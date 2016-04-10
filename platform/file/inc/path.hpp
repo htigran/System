@@ -5,8 +5,8 @@
  *      Author: thovhann
  */
 
-#ifndef PLATFORM_FILE_INC_PATH_H_
-#define PLATFORM_FILE_INC_PATH_H_
+#ifndef PLATFORM_FILE_INC_PATH_HPP_
+#define PLATFORM_FILE_INC_PATH_HPP_
 
 #include <iostream>
 using namespace std;
@@ -57,4 +57,4 @@ private:
 
 } /* namespace platform */
 
-#endif /* PLATFORM_FILE_INC_PATH_H_ */
+#endif /* PLATFORM_FILE_INC_PATH_HPP_ */

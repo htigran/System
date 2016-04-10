@@ -8,9 +8,8 @@
 #ifndef PLATFORM_FILE_FILE_MODE_H_
 #define PLATFORM_FILE_FILE_MODE_H_
 
-#include <file_types.h>
-
 #include <iostream>
+#include "file_types.hpp"
 
 using namespace std;
 
