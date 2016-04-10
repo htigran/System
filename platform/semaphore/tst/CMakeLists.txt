@@ -1,4 +1,4 @@
 
-add_test(semaphore_test 
+addTest(semaphore_test 
     semaphore_test.cpp
 )

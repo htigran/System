@@ -53,10 +53,11 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake
   CACHE
   FORCE
+  CMAKE_MODULE_PATH
 )
 
 cmake_policy(SET CMP0042 NEW)
- 
+
 add_subdirectory(platform)
 
 enable_testing()
