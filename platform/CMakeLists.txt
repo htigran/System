@@ -1,5 +1,5 @@
   
-set(MODULES
+set(LIBRARIES
     "dbg"
     "socket"
     "thread"
@@ -10,5 +10,5 @@ set(MODULES
     "semaphore"
     "file"
     )
-  
+    
 include(${CMAKE_MODULE_PATH}/core.cmake)

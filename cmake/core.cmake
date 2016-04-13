@@ -7,39 +7,37 @@ function(prepend var prefix)
    set(${var} "${listVar}" PARENT_SCOPE)
 endfunction(prepend)
 
+set(INCLUDE_DIRS /usr/local/include/)
+
 macro(add_modules)
-    foreach(mod ${MODULES})
+
+    # add libraries
+    foreach(mod ${LIBRARIES})
         include(${mod}/src/src.cmake)
         prepend(SOURCE_FILES ${mod}/src ${SOURCES})        
         add_library(${mod} SHARED
             ${SOURCE_FILES}
         )
+        target_include_directories(${mod} PUBLIC ${INCLUDE_DIRS})
         target_include_directories(${mod} PUBLIC  ${mod}/inc)
         target_link_libraries(${mod} ${DEPENDENCIES})
         add_subdirectory(${mod}/tst)
     endforeach(mod)
+    
+    # add applications
+    foreach(mod ${APPLICATIONS})
+        include(${mod}/src/src.cmake)
+        prepend(SOURCE_FILES ${mod}/src ${SOURCES})        
+        add_executable(${mod}
+            ${SOURCE_FILES}
+        )
+        target_include_directories(${mod} PUBLIC ${INCLUDE_DIRS})
+        target_include_directories(${mod} PUBLIC  ${mod}/inc)
+        target_link_libraries(${mod} ${DEPENDENCIES})
+        add_subdirectory(${mod}/tst)
+    endforeach(mod)
+    
 endmacro(add_modules)
-
-####################################################
-## gtest
-set(GOOGLETEST_ROOT external/googletest/googletest CACHE STRING "Google Test source root")
-
-include_directories(
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/include
-    )
-    
-set(GOOGLETEST_SOURCES
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/src/gtest-all.cc
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/src/gtest_main.cc
-    )
-    
-foreach(_source ${GOOGLETEST_SOURCES})
-    set_source_files_properties(${_source} PROPERTIES GENERATED 1)
-endforeach()
-
-add_library(googletest ${GOOGLETEST_SOURCES})
-####################################################
 
 macro(addTest name sources)
     add_executable(${name} ${sources})
