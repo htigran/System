@@ -5,7 +5,7 @@
  *      Author: thovhann
  */
 
-#include "file_mode.h"
+#include "../inc/file_mode.hpp"
 
 namespace platform
 {
@@ -34,32 +34,45 @@ string FileMode::getStringMode()
 {
 	char temp[] = {'-', '-', '-', '-', '-', '-', '-', '-', '-', '\0'};
 
-	if (m_mode & FileTypes::RU)
+	if (m_mode == FileTypes::None) {
+		return temp;
+	}
+
+	if (m_mode & FileTypes::RU) {
 		temp[0] = 'r';
+	}
 
-	if (m_mode & FileTypes::WU)
+	if (m_mode & FileTypes::WU) {
 		temp[1] = 'w';
+	}
 
-	if (m_mode & FileTypes::XU)
+	if (m_mode & FileTypes::XU) {
 		temp[2] = 'x';
+	}
 
-	if (m_mode & FileTypes::RG)
+	if (m_mode & FileTypes::RG) {
 		temp[3] = 'r';
+	}
 
-	if (m_mode & FileTypes::WG)
+	if (m_mode & FileTypes::WG) {
 		temp[4] = 'w';
+	}
 
-	if (m_mode & FileTypes::XG)
+	if (m_mode & FileTypes::XG) {
 		temp[5] = 'x';
+	}
 
-	if (m_mode & FileTypes::RO)
+	if (m_mode & FileTypes::RO) {
 		temp[6] = 'r';
+	}
 
-	if (m_mode & FileTypes::WO)
+	if (m_mode & FileTypes::WO) {
 		temp[7] = 'w';
+	}
 
-	if (m_mode & FileTypes::XO)
+	if (m_mode & FileTypes::XO) {
 		temp[8] = 'x';
+	}
 
 	return string(temp);
 }

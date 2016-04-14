@@ -1,4 +1,4 @@
 
-add_test(dbg_test 
+addTest(dbg_test 
     main.cpp
 )

@@ -1,6 +1,8 @@
 
-add_test(file_test 
-    "file_test.cpp" 
-    "file_types_test.cpp" 
-    "path_test.cpp" 
+set(test_name file_test)
+
+addTest(${test_name}
+    "main.cpp"
 )
+
+TARGET_LINK_LIBRARIES(${test_name} file)

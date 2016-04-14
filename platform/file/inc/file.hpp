@@ -9,16 +9,16 @@
 #ifndef PPLATFORM_FILE_INC_FILE_HPP_
 #define PPLATFORM_FILE_INC_FILE_HPP_
 
-#include <file_mode.h>
-#include <path.h>
-#include <file_types.h>
-
 #include  <stdio.h>
 #include <sys/stat.h>
 #include <dirent.h>
 
 #include <iostream>
 #include <vector>
+
+#include "file_mode.hpp"
+#include "file_types.hpp"
+#include "path.hpp"
 using namespace std;
 
 namespace platform

@@ -9,9 +9,9 @@
 #define PLATFORM_FILE_FILE_MODE_H_
 
 #include <iostream>
-using namespace std;
+#include "file_types.hpp"
 
-#include <file_types.h>
+using namespace std;
 
 namespace platform
 {

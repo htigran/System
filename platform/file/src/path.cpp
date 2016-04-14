@@ -5,7 +5,8 @@
  *      Author: thovhann
  */
 
-#include <path.h>
+#include "../inc/path.hpp"
+
 #include <unistd.h>
 
 namespace platform
@@ -24,7 +25,7 @@ Path Path::getAbsolutePath()
 	char thePath[256];
 	string temp = m_path;
 	string res;
-	getcwd(thePath, 255);
+	::getcwd(thePath, 255);
 	int level = 0;
 	int i = 0;
 

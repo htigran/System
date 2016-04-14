@@ -11,4 +11,4 @@ set(MODULES
     "file"
     )
   
-include(cmake/core.cmake)
+include(${CMAKE_MODULE_PATH}/core.cmake)
