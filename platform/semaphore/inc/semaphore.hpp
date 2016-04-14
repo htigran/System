@@ -26,7 +26,8 @@ public:
 	 * @param name: The name of the mutex, must start with '/' on linux systems
 	 * @param val the initial value of the semaphore
 	 */
-	Semaphore(char name[], unsigned int val);
+	Semaphore(	char name[],
+				unsigned int val);
 
 	/**
 	 * @brief The semaphor is locked. When calling wait(), if the semaphore's value is zero, the calling thread will block until the lock is

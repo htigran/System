@@ -18,12 +18,12 @@ Logger::Logger(string path)
 	m_out.open(path.c_str(), ofstream::app | ofstream::out);
 }
 
-std::ofstream& Logger::log(string type, int indent)
+std::ofstream& Logger::log(	string type,
+							int indent)
 {
 	int i = 0;
 
-	while (i < indent)
-	{
+	while (i < indent) {
 		m_out << "\t";
 		i++;
 	}

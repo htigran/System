@@ -1,4 +1,4 @@
 
-add_test(time_test 
+addTest(time_test 
     time_test.cpp
 )

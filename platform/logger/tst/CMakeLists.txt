@@ -1,4 +1,4 @@
 
-add_test(tst_test 
+addTest(logger_test 
     logger_test.cpp
 )

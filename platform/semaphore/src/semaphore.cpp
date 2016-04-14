@@ -10,7 +10,8 @@
 namespace platform
 {
 
-Semaphore::Semaphore(char name[], unsigned int val)
+Semaphore::Semaphore(	char name[],
+						unsigned int val)
 {
 	sem_unlink(name);
 	this->name = name;
@@ -34,8 +35,8 @@ int Semaphore::tryWait()
 
 void Semaphore::close()
 {
-	sem_close (sem);
-	sem_unlink (name);
+	sem_close(sem);
+	sem_unlink(name);
 }
 
 } /* namespace platform */

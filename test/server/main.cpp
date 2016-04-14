@@ -11,14 +11,20 @@
 
 #include <socket_server.hpp>
 
-
-int main(int argc, const char * argv[]) {
-    
+int main(	int argc,
+			const char * argv[])
+{
 	SocketServer server;
-    server.bind(5100);
-    server.listen(3);
-    Socket clSockId = server.accept();
-    clSockId.recv();
-    clSockId.close();
-    return 0;
+	server.bind(5100);
+	server.listen(3);
+
+	Socket clSockId;
+	server.accept(clSockId);
+
+	std::string msg;
+	msg.resize(255);
+	clSockId.recv(msg);
+
+	clSockId.close();
+	return 0;
 }

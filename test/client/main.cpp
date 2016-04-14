@@ -11,11 +11,12 @@
 
 #include <socket.hpp>
 
+int main(	int argc,
+			const char * argv[])
+{
 
-int main(int argc, const char * argv[]) {
-    
-    Socket client;
-    client.connect("127.0.0.1", 5100);
-    client.send("Hello");
-    return 0;
+	Socket client;
+	client.connect("127.0.0.1", 5100);
+	client.send("Hello");
+	return 0;
 }

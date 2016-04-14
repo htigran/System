@@ -10,11 +10,17 @@
 
 #include <socket.hpp>
 
+#include <netinet/in.h>
 #include <inttypes.h>
 
 class SocketServer
 {
 public:
+
+	enum Status
+	{
+		NOERROR = 0, ECREATE, EBIND, ELISTEN, EACCEPT, ECLOSE,
+	};
 
 	/*! \brief default constructor
 	 *
@@ -30,7 +36,7 @@ public:
 	 *
 	 *	\param port number
 	 */
-	void bind(uint16_t port);
+	Status bind(uint16_t port);
 
 	/*! \brief listen for connections on a socket
 	 *
@@ -40,7 +46,7 @@ public:
 	 *  \param backlog defines the maximum length to which the queue of pending
 	 *  				connections for the socket may grow
 	 */
-	void listen(int backlog);
+	Status listen(int backlog);
 
 	/*! \brief accept a connection on the socket
 	 *
@@ -53,10 +59,25 @@ public:
 	 *	\return On success, these system calls return a nonnegative integer
 	 *	that is a descriptor for the accepted socket. On error, -1 is returned.
 	 */
-	Socket accept();
+	Status accept(Socket&);
+
+	/*! \brief closes the connection
+	 *
+	 *  ...
+	 */
+	Status close();
 
 private:
 	int m_sockid;
+	sockaddr_in m_serverAddr;
+
+	enum State
+	{
+		INITIAL, CREATED, BINDED, LISTEN, CLOSED,
+	};
+
+	State m_state;
+
 };
 
 #endif /* PLATFORM_SOCKET_SRC_SOCKET_SERVER_HPP_ */
