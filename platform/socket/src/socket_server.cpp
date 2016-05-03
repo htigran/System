@@ -56,7 +56,7 @@ SocketServer::Status SocketServer::bind(uint16_t port)
 		TRACE("Can't bind to port:" << port << " Socket is not connected.");
 		return ECREATE;
 	}
-	memset((char*) &m_serverAddr, 0, sizeof(m_serverAddr))
+	memset((char*) &m_serverAddr, 0, sizeof(m_serverAddr));
 	m_serverAddr.sin_family = AF_INET;
 	m_serverAddr.sin_port = htons(port);
 	m_serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
