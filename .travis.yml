@@ -3,7 +3,12 @@
 # This file can be validated on:
 # http://lint.travis-ci.org/
 
+before_install:
+- sudo add-apt-repository ppa:george-edison55/cmake-3.x --yes
+- sudo apt-get update
+
 install:
+- sudo apt-get install cmake
 # /usr/bin/gcc is 4.6 always, but gcc-X.Y is available.
 - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
 # /usr/bin/clang is 3.4, lets override with modern one.
