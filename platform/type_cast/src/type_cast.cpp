@@ -5,7 +5,7 @@
  *      Author: tigran
  */
 
-#include "/Users/tigran/workspace/system/platform/type_cast/inc/type_cast.hpp"
+#include <type_cast.hpp>
 
 namespace platform
 {
