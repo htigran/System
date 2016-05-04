@@ -3,11 +3,19 @@
 set -evx
 env | sort
 
-cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -
-
+# crete build folder
 mkdir build || true
 cd build
-cmake -DCMAKE_CXX_FLAGS=$CXX_FLAGS \
-      ../
+
+# compile googletest
+mkdir gtest || true
+cd gtest 
+cmake ../../external/googletest
+cmake --build ../../external/googletest
+sudo mv libg* /usr/local/lib/
+cd ..
+
+# compile and run our system
+cmake -DCMAKE_CXX_FLAGS=$CXX_FLAGS ../
 make
 make test
