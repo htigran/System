@@ -26,7 +26,6 @@ macro(addTest name sources)
     add_executable(${name} ${sources})
     ADD_TEST(${name}_c  ${CMAKE_BINARY_DIR}/bin/${name})
     target_include_directories(${name} PUBLIC  ../inc)
-    add_dependencies(${name} ${GTEST_LIBRARIES})
     TARGET_LINK_LIBRARIES(${name} ${GTEST_LIBRARIES})
 endmacro(addTest)
 
