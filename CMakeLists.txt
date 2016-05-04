@@ -7,6 +7,10 @@ project(SysProj)
 # Enable c, and c++ language
 enable_language(C CXX)
 
+# Locate GTest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
 # Project version
 SET(PROJECT_VERSION_MAJOR "0")
 SET(PROJECT_VERSION_MINOR "1")
