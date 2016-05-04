@@ -48,4 +48,4 @@ env:
 
 notifications:
   email: false
-sudo: false
+sudo: required
