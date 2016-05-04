@@ -20,6 +20,11 @@ addons:
     #   https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
     # List of whitelisted in travis apt-sources:
     #   https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+    packages:
+    - valgrind
+    - cmake
+    - cmake-data
+    
 os:
   - linux
   - osx
