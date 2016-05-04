@@ -4,5 +4,5 @@ set(SOURCES
     dbg.cpp
 )
 
-set(DEPENDENCIES
+set(LIBS
 )

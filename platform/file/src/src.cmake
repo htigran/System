@@ -9,3 +9,6 @@ set(SOURCES
 
 set(DEPENDENCIES
 )
+
+set(LIBS
+)

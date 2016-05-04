@@ -4,5 +4,5 @@ set(SOURCES
     mutex.cpp
 )
 
-set(DEPENDENCIES
+set(LIBS
 )

@@ -1,10 +1,15 @@
 
-set(test_name file_test)
+set(TEST_NAME file_test)
 
-addTest(${test_name}
+set(DEPENDENCIES
+)
+
+set(LIBS
+    file
+)
+
+set (SOURCES
     "main.cpp"
 )
 
-set(DEPENDENCIES
-    pthread
-)
+addTest()
