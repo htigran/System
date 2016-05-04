@@ -6,4 +6,5 @@ set(SOURCES
 
 set(DEPENDENCIES
     dbg
+    pthread
 )

@@ -3,6 +3,11 @@
 # This file can be validated on:
 # http://lint.travis-ci.org/
 
+before_install:
+ - sudo apt-get update
+ - sudo apt-get install libgtest-dev
+ - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
+
 install:
 # /usr/bin/gcc is 4.6 always, but gcc-X.Y is available.
 - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
@@ -21,11 +26,14 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     - llvm-toolchain-precise-3.7
+    - george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
     packages:
     - gcc-4.9
     - g++-4.9
     - clang-3.7
     - valgrind
+    - cmake
+    - cmake-data
 os:
   - linux
   - osx
@@ -40,4 +48,4 @@ env:
 
 notifications:
   email: false
-sudo: false
+sudo: required

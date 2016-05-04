@@ -21,32 +21,12 @@ macro(add_modules)
 endmacro(add_modules)
 
 ####################################################
-## gtest
-set(GOOGLETEST_ROOT external/googletest/googletest CACHE STRING "Google Test source root")
-
-include_directories(
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/include
-    )
-    
-set(GOOGLETEST_SOURCES
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/src/gtest-all.cc
-    ${PROJECT_SOURCE_DIR}/${GOOGLETEST_ROOT}/src/gtest_main.cc
-    )
-    
-foreach(_source ${GOOGLETEST_SOURCES})
-    set_source_files_properties(${_source} PROPERTIES GENERATED 1)
-endforeach()
-
-add_library(googletest ${GOOGLETEST_SOURCES})
-####################################################
 
 macro(addTest name sources)
     add_executable(${name} ${sources})
     ADD_TEST(${name}_c  ${CMAKE_BINARY_DIR}/bin/${name})
     target_include_directories(${name} PUBLIC  ../inc)
-    add_dependencies(${name} googletest)
-    TARGET_LINK_LIBRARIES(${name} googletest)
+    TARGET_LINK_LIBRARIES(${name} ${GTEST_LIBRARIES})
 endmacro(addTest)
 
 add_modules()
