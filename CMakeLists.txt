@@ -60,8 +60,6 @@ set(CMAKE_MODULE_PATH
   CMAKE_MODULE_PATH
 )
 
-cmake_policy(SET CMP0042 NEW)
-
 add_subdirectory(platform)
 
 enable_testing()
