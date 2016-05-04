@@ -12,7 +12,7 @@ mkdir gtest || true
 cd gtest 
 cmake ../../external/googletest/googletest
 cmake --build .
-sudo mv libg* /usr/local/lib/
+sudo cmake --build . --target install
 cd ..
 
 # compile and run our system
