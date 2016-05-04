@@ -3,12 +3,6 @@
 # This file can be validated on:
 # http://lint.travis-ci.org/
 
-before_install:
- - sudo apt-get install g++
- - sudo apt-get install clang
- - sudo apt-get install libgtest-dev
- - "cd /usr/src/gtest && sudo cmake . && sudo cmake --build . && sudo mv libg* /usr/local/lib/ ; cd -"
-
 install:
 - echo ${PATH}
 - echo ${CXX}
@@ -20,6 +14,10 @@ addons:
     #   https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
     # List of whitelisted in travis apt-sources:
     #   https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+    packages:
+    - g++
+    - clang
+    - libgtest-dev
 os:
   - linux
   - osx
