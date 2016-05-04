@@ -9,7 +9,7 @@ FIND_PACKAGE(Threads REQUIRED)
 FIND_PACKAGE(GTest REQUIRED)
 
 IF(CMAKE_COMPILER_IS_GNUCXX)
-    ADD_DEFINITIONS(-Wall -ansi -Wno-deprecated)
+    ADD_DEFINITIONS(-Wall -ansi -Wno-deprecated -pthread)
 ENDIF()
 
 # set the output paths

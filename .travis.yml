@@ -17,7 +17,6 @@ addons:
     packages:
     - g++
     - clang
-    - libgtest-dev
 os:
   - linux
   - osx

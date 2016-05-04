@@ -10,7 +10,7 @@ cd build
 # compile googletest
 mkdir gtest || true
 cd gtest 
-cmake ../../external/googletest/googletest
+cmake -DBUILD_SHARED_LIBS=ON ../../external/googletest/googletest
 cmake --build .
 sudo cmake --build . --target install
 cd ..
