@@ -11,7 +11,7 @@ cd build
 mkdir gtest || true
 cd gtest 
 cmake ../../external/googletest
-cmake --build ../../external/googletest
+cmake --build .
 sudo mv libg* /usr/local/lib/
 cd ..
 
