@@ -14,7 +14,7 @@ macro(add_modules)
         add_library(${mod} SHARED
             ${SOURCE_FILES}
         )
-        target_include_directories(${mod} PUBLIC  ${mod}/inc)
+        include_directories(PUBLIC  ${mod}/inc)
         target_link_libraries(${mod} ${DEPENDENCIES})
         add_subdirectory(${mod}/tst)
     endforeach(mod)
@@ -25,7 +25,7 @@ endmacro(add_modules)
 macro(addTest name sources)
     add_executable(${name} ${sources})
     ADD_TEST(${name}_c  ${CMAKE_BINARY_DIR}/bin/${name})
-    target_include_directories(${name} PUBLIC  ../inc)
+    include_directories(PUBLIC  ../inc)
     TARGET_LINK_LIBRARIES(${name} ${GTEST_LIBRARIES})
 endmacro(addTest)
 
