@@ -20,7 +20,8 @@ addons:
     #   https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
     # List of whitelisted in travis apt-sources:
     #   https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
-    packages:
+    - george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
+   packages:
     - valgrind
     - cmake
     - cmake-data
