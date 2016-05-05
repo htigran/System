@@ -17,7 +17,7 @@ cd ..
 
 
 # compile and run our system
-CXX_FLAGS += --coverage
+CXX_FLAGS+="--coverage"
 cmake -DCMAKE_CXX_FLAGS=$CXX_FLAGS ../
 make
 make test
