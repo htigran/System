@@ -37,7 +37,7 @@ TEST_F(PathTest, basic)
 	EXPECT_STREQ(m_path->getAbsolutePath(), "/root/parent/file.ext");
 	EXPECT_STREQ(m_path->getName().c_str(), "file.ext");
 	EXPECT_STREQ(m_path->getParent().toString().c_str(), "parent");
-	EXPECT_STREQ(m_path->toString(), "/root/parent/file.ext");
+	EXPECT_STREQ(m_path->toString().c_str(), "/root/parent/file.ext");
 	EXPECT_STREQ((char*)m_path, "/root/parent/file.ext");
 }
 
