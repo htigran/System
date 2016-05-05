@@ -1,5 +1,15 @@
 
-#Bring the headers, such as Student.h into the project
-addTest(socket_test 
-    main.cpp
+set(TEST_NAME socket_test)
+
+set(DEPENDENCIES
 )
+
+set(LIBS
+    file
+)
+
+set (SOURCES
+    "main.cpp"
+)
+
+addTest()

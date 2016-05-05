@@ -9,24 +9,38 @@ endfunction(prepend)
 
 macro(add_modules)
     foreach(mod ${MODULES})
+        
+        #defaults
+        set(SOURCE_FILES "")
+        set(LIBS "")
+        set(DEPENDENCIES "")
+        
+        # create lib
         include(${mod}/src/src.cmake)
         prepend(SOURCE_FILES ${mod}/src ${SOURCES})        
         add_library(${mod} SHARED
             ${SOURCE_FILES}
         )
-        target_include_directories(${mod} PUBLIC  ${mod}/inc)
-        target_link_libraries(${mod} ${DEPENDENCIES})
+        include_directories(PUBLIC ${mod}/inc)
+        #add_dependencies(${mod} ${DEPENDENCIES})
+        target_link_libraries(${mod} ${LIBS})
+        
         add_subdirectory(${mod}/tst)
+        
     endforeach(mod)
 endmacro(add_modules)
 
 ####################################################
 
-macro(addTest name sources)
-    add_executable(${name} ${sources})
-    ADD_TEST(${name}_c  ${CMAKE_BINARY_DIR}/bin/${name})
-    target_include_directories(${name} PUBLIC  ../inc)
-    TARGET_LINK_LIBRARIES(${name} ${GTEST_LIBRARIES})
+macro(addTest)
+    INCLUDE_DIRECTORIES(PUBLIC ../inc ${GTEST_INCLUDE_DIRS})
+    ADD_EXECUTABLE(${TEST_NAME} ${SOURCES})
+    #ADD_DEPENDENCIES(${PROJECT_TEST_NAME} ${DEPENDENCIES})
+    TARGET_LINK_LIBRARIES(${TEST_NAME}
+        ${GTEST_BOTH_LIBRARIES}
+        ${LIBS}
+        )
+    ADD_TEST(${TEST_NAME}_test  ${CMAKE_BINARY_DIR}/bin/${TEST_NAME})
 endmacro(addTest)
 
 add_modules()

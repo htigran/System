@@ -4,6 +4,6 @@ set(SOURCES
     time.cpp
 )
 
-set(DEPENDENCIES
+set(LIBS
     type_cast
 )

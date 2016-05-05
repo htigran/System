@@ -4,7 +4,7 @@ set(SOURCES
     thread.cpp
 )
 
-set(DEPENDENCIES
+set(LIBS
     dbg
-    pthread
+    -pthread
 )

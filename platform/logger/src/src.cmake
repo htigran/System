@@ -4,6 +4,6 @@ set(SOURCES
     logger.cpp
 )
 
-set(DEPENDENCIES
+set(LIBS
     time
 )
