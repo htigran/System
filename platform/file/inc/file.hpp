@@ -186,7 +186,6 @@ public:
 private:
 	FILE* m_f;
 	Path m_path;
-	string m_mode;
 	bool m_openned;
 };
 
