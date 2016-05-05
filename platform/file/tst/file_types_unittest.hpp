@@ -29,17 +29,17 @@ TEST(FileTypes, ConstChecksos)
 
 TEST(FileTypes, SizeFormat)
 {
-	EXPECT_GT(FileTypes::Byte, FileTypes::Kbyte);
-	EXPECT_GT(FileTypes::Kbyte, FileTypes::Mbyte);
-	EXPECT_GT(FileTypes::Mbyte, FileTypes::Gbyte);
-	EXPECT_GT(FileTypes::Gbyte, FileTypes::Tbyte);
+	EXPECT_LT(FileTypes::Byte, FileTypes::Kbyte);
+	EXPECT_LT(FileTypes::Kbyte, FileTypes::Mbyte);
+	EXPECT_LT(FileTypes::Mbyte, FileTypes::Gbyte);
+	EXPECT_LT(FileTypes::Gbyte, FileTypes::Tbyte);
 }
 
 TEST(FileTypes, SeekMode)
 {
 	EXPECT_EQ(FileTypes::SeekBegin, 0);
-	EXPECT_GT(FileTypes::SeekCurrent, 1);
-	EXPECT_GT(FileTypes::SeekEnd, 2);
+	EXPECT_EQ(FileTypes::SeekCurrent, 1);
+	EXPECT_EQ(FileTypes::SeekEnd, 2);
 }
 
 TEST(FileTypes, FilePermission)
