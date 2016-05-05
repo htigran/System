@@ -12,16 +12,16 @@ namespace platform
 {
 
 File::File(Path& p)
-		: 	m_path(p),
-			m_openned(false),
-			m_f(NULL)
+		: 	m_f(NULL),
+			m_path(p),
+			m_openned(false)
 {
 }
 
 File::File(const string& p)
-		: 	m_path(p),
-			m_openned(false),
-			m_f(NULL)
+		: 	m_f(NULL),
+			m_path(p),
+			m_openned(false)
 {
 }
 
@@ -126,7 +126,7 @@ FileMode File::getMode()
 
 vector<string> File::getList()
 {
-	vector < string > vect;
+	vector<string> vect;
 	DIR* dir = opendir(m_path);
 	struct dirent* ent;
 
@@ -252,7 +252,7 @@ int File::readc()
 
 	char c = fgetc(m_f);
 
-	if (ferror (m_f)) {
+	if (ferror(m_f)) {
 		return Eof;
 	}
 
@@ -266,7 +266,7 @@ int File::writec(char c)
 
 	fputc(c, m_f);
 
-	if (ferror (m_f)) {
+	if (ferror(m_f)) {
 		return Eof;
 	}
 
