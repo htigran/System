@@ -35,8 +35,8 @@ struct PathTest : testing::Test
 TEST_F(PathTest, basic)
 {
 	EXPECT_STREQ(m_path->getAbsolutePath(), "/root/parent/file.ext");
-	EXPECT_STREQ(m_path->m_getName(), "file.ext");
-	EXPECT_STREQ(m_path->getParent().toString(), "parent");
+	EXPECT_STREQ(m_path->getName(), "file.ext");
+	EXPECT_STREQ(m_path->getParent().toString().c_str(), "parent");
 	EXPECT_STREQ(m_path->toString(), "/root/parent/file.ext");
 	EXPECT_STREQ((char*)m_path, "/root/parent/file.ext");
 }

@@ -31,9 +31,9 @@ struct FileTest : testing::Test
 TEST_F(FileTest, basic)
 {
 	// file should not exist at this point
-	EXPECT_EQ(m_file->exists(), FALSE);
+	EXPECT_EQ(m_file->exists(), false);
 
-	EXPECT_EQ(m_file->isOpenned(), FALSE);
+	EXPECT_EQ(m_file->isOpenned(), false);
 }
 
 } // namespace platformTest
