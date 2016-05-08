@@ -40,11 +40,11 @@ public:
 	enum SeekMode
 	{
 		/** Seek from the beginning of the file **/
-		SeekBegin = 0,
+		SeekBegin = SEEK_SET,
 		/** Seek from the current position **/
-		SeekCurrent = 1,
+		SeekCurrent = SEEK_CUR,
 		/** Seek from the end of the file **/
-		SeekEnd = 2
+		SeekEnd = SEEK_END
 	};
 
 	enum FilePermission

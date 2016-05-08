@@ -18,6 +18,6 @@ const string FileTypes::ReadWrite = "rw";
 
 const string FileTypes::Append = "a+";
 
-const int FileTypes::Eof = -2;
+const int FileTypes::Eof = EOF;
 
 } /* namespace platform */

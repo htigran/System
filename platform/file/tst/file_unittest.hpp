@@ -39,39 +39,69 @@ TEST_F(FileTest, notExist)
 {
 	// file should not exist at this point
 	EXPECT_FALSE(m_fileStr->exists());
-	EXPECT_FALSE(m_fileStr->isOpenned());
 	EXPECT_FALSE(m_filePath->exists());
-	EXPECT_FALSE(m_filePath->isOpenned());
-	EXPECT_EQ(m_fileStr->getSize(), -1);
-	EXPECT_EQ(m_filePath->getSize(), -1);
-	EXPECT_FALSE(m_fileStr->isFile());
-	EXPECT_FALSE(m_filePath->isFile());
-}
 
-TEST_F(FileTest, cantOpen)
-{
-	// file should not exist at this point so can't be opened
+	// file should not exist at this point so can't be opened for read
 	EXPECT_EQ(m_fileStr->open(FileTypes::Read), -1);
-	EXPECT_FALSE(m_fileStr->isOpenned());
 	EXPECT_EQ(m_filePath->open(FileTypes::Read), -1);
+
+	EXPECT_FALSE(m_fileStr->isOpenned());
 	EXPECT_FALSE(m_filePath->isOpenned());
+
 	EXPECT_EQ(m_fileStr->getSize(), -1);
 	EXPECT_EQ(m_filePath->getSize(), -1);
+
 	EXPECT_FALSE(m_fileStr->isFile());
 	EXPECT_FALSE(m_filePath->isFile());
+
+	EXPECT_TRUE(m_fileStr->eof());
+	EXPECT_TRUE(m_filePath->eof());
+
+	EXPECT_EQ(m_fileStr->writec('t'), -1);
+	EXPECT_EQ(m_filePath->writec('t'), -1);
+
+	EXPECT_EQ(m_fileStr->seek(0, FileTypes::SeekBegin), -1);
+	EXPECT_EQ(m_filePath->seek(0, FileTypes::SeekBegin), -1);
+
+	EXPECT_EQ(m_fileStr->readc(), FileTypes::Eof);
+	EXPECT_EQ(m_filePath->readc(), FileTypes::Eof);
+
 }
 
-TEST_F(FileTest, Open)
+TEST_F(FileTest, OpenWriteOpenRead)
 {
-	// file should not exist at this point so can't be opened
 	EXPECT_EQ(m_fileStr->open(FileTypes::Write), 0);
-	EXPECT_TRUE(m_fileStr->isOpenned());
 	EXPECT_EQ(m_filePath->open(FileTypes::Write), 0);
+
+	EXPECT_TRUE(m_fileStr->isOpenned());
 	EXPECT_TRUE(m_filePath->isOpenned());
+
 	EXPECT_EQ(m_fileStr->getSize(), 0);
 	EXPECT_EQ(m_filePath->getSize(), 0);
+
 	EXPECT_TRUE(m_fileStr->isFile());
 	EXPECT_TRUE(m_filePath->isFile());
+
+	EXPECT_FALSE(m_fileStr->eof());
+	EXPECT_FALSE(m_filePath->eof());
+
+	EXPECT_EQ(m_fileStr->writec('t'), 0);
+	EXPECT_EQ(m_filePath->writec('t'), 0);
+
+	EXPECT_EQ(m_fileStr->seek(0, FileTypes::SeekBegin), 0);
+	EXPECT_EQ(m_filePath->seek(0, FileTypes::SeekBegin), 0);
+
+	EXPECT_EQ(m_fileStr->readc(), FileTypes::Eof);
+	EXPECT_EQ(m_filePath->readc(), FileTypes::Eof);
+
+	EXPECT_EQ(m_fileStr->close(), 0);
+	EXPECT_EQ(m_filePath->close(), 0);
+
+	EXPECT_EQ(m_fileStr->open(FileTypes::Read), 0);
+	EXPECT_EQ(m_filePath->open(FileTypes::Read), 0);
+
+	EXPECT_EQ(m_fileStr->readc(), 't');
+	EXPECT_EQ(m_filePath->readc(), 't');
 }
 
 }

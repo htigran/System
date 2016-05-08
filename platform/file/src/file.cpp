@@ -126,7 +126,7 @@ FileMode File::getMode()
 
 vector<string> File::getList()
 {
-	vector<string> vect;
+	vector < string > vect;
 	DIR* dir = opendir(m_path);
 	struct dirent* ent;
 
@@ -209,6 +209,9 @@ int File::renameTo(File& f)
 int File::seek(	int offset,
 				SeekMode origin)
 {
+	if (!isOpenned()) {
+		return -1;
+	}
 	return fseek(m_f, offset, origin);
 }
 
@@ -252,7 +255,7 @@ int File::readc()
 
 	char c = fgetc(m_f);
 
-	if (ferror(m_f)) {
+	if (ferror (m_f)) {
 		return Eof;
 	}
 
@@ -266,7 +269,7 @@ int File::writec(char c)
 
 	fputc(c, m_f);
 
-	if (ferror(m_f)) {
+	if (ferror (m_f)) {
 		return Eof;
 	}
 

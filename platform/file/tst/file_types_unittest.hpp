@@ -24,7 +24,7 @@ TEST(FileTypes, ConstChecksos)
 	EXPECT_STREQ(FileTypes::Write.c_str(), "w");
 	EXPECT_STREQ(FileTypes::ReadWrite.c_str(), "rw");
 	EXPECT_STREQ(FileTypes::Append.c_str(), "a+");
-	EXPECT_EQ(FileTypes::Eof, -2);
+	EXPECT_EQ(FileTypes::Eof, EOF);
 }
 
 TEST(FileTypes, SizeFormat)
@@ -37,9 +37,9 @@ TEST(FileTypes, SizeFormat)
 
 TEST(FileTypes, SeekMode)
 {
-	EXPECT_EQ(FileTypes::SeekBegin, 0);
-	EXPECT_EQ(FileTypes::SeekCurrent, 1);
-	EXPECT_EQ(FileTypes::SeekEnd, 2);
+	EXPECT_EQ(FileTypes::SeekBegin, SEEK_SET);
+	EXPECT_EQ(FileTypes::SeekCurrent, SEEK_CUR);
+	EXPECT_EQ(FileTypes::SeekEnd, SEEK_END);
 }
 
 TEST(FileTypes, FilePermission)
