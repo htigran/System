@@ -162,7 +162,12 @@ TEST_F(FileTest, DirTest)
 		EXPECT_EQ(m_fileStr->getMode().getMode(), 040755);
 		EXPECT_EQ(m_fileStr->remove(), 0);
 	}
+}
 
+TEST(GetListTest, CurrentDir)
+{
+	File f("bin/");
+	EXPECT_EQ(f.getList().size(), 9);
 }
 
 }
