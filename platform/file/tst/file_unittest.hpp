@@ -113,6 +113,56 @@ TEST_F(FileTest, OpenWriteOpenRead)
 
 	EXPECT_EQ(m_fileStr->readc(), 't');
 	EXPECT_EQ(m_filePath->readc(), 't');
+
+	EXPECT_FALSE(m_fileStr->isDirectory());
+	EXPECT_FALSE(m_filePath->isDirectory());
+
+	FileMode f(0100744);
+	EXPECT_EQ(m_fileStr->setMode(f), 0);
+	EXPECT_EQ(m_filePath->setMode(f), 0);
+
+	EXPECT_EQ(m_fileStr->getMode().getMode(), 0100744);
+	EXPECT_EQ(m_filePath->getMode().getMode(), 0100744);
+
+	// clean up
+	EXPECT_EQ(m_fileStr->close(), 0);
+	EXPECT_EQ(m_filePath->close(), 0);
+}
+
+TEST_F(FileTest, getHumanReadableSize)
+{
+	EXPECT_EQ(m_fileStr->open(FileTypes::Write), 0);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Byte), 0);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Kbyte), 0);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Mbyte), 0);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Gbyte), 0);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Tbyte), 0);
+	for (int i = 0; i < 1024; ++i) {
+		EXPECT_EQ(m_fileStr->writec('t'), 0);
+	}
+	EXPECT_EQ(m_fileStr->close(), 0);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Byte), 1024);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Kbyte), 1);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Mbyte), 0.0009746626);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Gbyte), 9.5142747e-07);
+	EXPECT_FLOAT_EQ(m_fileStr->getHumanReadableSize(FileTypes::Tbyte), 9.1051594e-10);
+}
+
+TEST_F(FileTest, DirTest)
+{
+	{
+		FileMode f(0100744);
+		EXPECT_EQ(m_fileStr->mkdir(f), 0);
+		EXPECT_EQ(m_fileStr->getMode().getMode(), 040744);
+		EXPECT_EQ(m_fileStr->remove(), 0);
+	}
+	{
+		FileMode f(0);
+		EXPECT_EQ(m_fileStr->mkdir(f), 0);
+		EXPECT_EQ(m_fileStr->getMode().getMode(), 040755);
+		EXPECT_EQ(m_fileStr->remove(), 0);
+	}
+
 }
 
 }

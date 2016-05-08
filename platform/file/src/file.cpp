@@ -97,16 +97,16 @@ float File::getHumanReadableSize(SizeFormat f)
 		return size;
 
 	case Kbyte:
-		return size / 1e3;
+		return float(size) / 1024;
 
 	case Mbyte:
-		return size / 1e6;
+		return float(size) / 1050620;
 
 	case Gbyte:
-		return size / 1e9;
+		return float(size) / 1076277500;
 
 	case Tbyte:
-		return size / 1e12;
+		return float(size) / 1124637070400L;
 
 	default:
 		return -1;
