@@ -31,7 +31,7 @@ TEST(PathTest, AbsolutePath)
 
 TEST(PathTest, RelativePath)
 {
-	Path p("file.ext");
+	Path p("../file.ext");
 	Path ap = p.getAbsolutePath();
 	EXPECT_STREQ(ap.getName().c_str(), "file.ext");
 	EXPECT_EQ(ap[0], '/');
