@@ -8,8 +8,8 @@
 #ifndef PLATFORM_FILE_FILE_TYPES_H_
 #define PLATFORM_FILE_FILE_TYPES_H_
 
-#include <iostream>
-using namespace std;
+#include <stdio.h>
+#include <string>
 
 namespace platform
 {
@@ -100,22 +100,22 @@ public:
 	/**
 	 * @brief Open file in read mode
 	 */
-	static const string Read;
+	static const std::string Read;
 
 	/**
 	 * @brief Open file in write mode
 	 */
-	static const string Write;
+	static const std::string Write;
 
 	/**
 	 * @brief Open the file in read write mode
 	 */
-	static const string ReadWrite;
+	static const std::string ReadWrite;
 
 	/**
 	 * @brief Open the file in read write append mode
 	 */
-	static const string Append;
+	static const std::string Append;
 
 	/**
 	 * @brief End of file marker

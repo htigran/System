@@ -5,18 +5,19 @@
  *      Author: thovhann
  */
 
-#include "../inc/file_types.hpp"
+#include <file_types.hpp>
+#include <stdio.h>
 
 namespace platform
 {
 
-const string FileTypes::Read = "rb";
+const std::string FileTypes::Read = "rb";
 
-const string FileTypes::Write = "w";
+const std::string FileTypes::Write = "w";
 
-const string FileTypes::ReadWrite = "rw";
+const std::string FileTypes::ReadWrite = "rw";
 
-const string FileTypes::Append = "a+";
+const std::string FileTypes::Append = "a+";
 
 const int FileTypes::Eof = EOF;
 
