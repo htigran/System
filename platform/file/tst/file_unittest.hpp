@@ -166,8 +166,22 @@ TEST_F(FileTest, DirTest)
 
 TEST(GetListTest, CurrentDir)
 {
-	File f("bin/");
-	EXPECT_EQ(f.getList().size(), 9);
+	File fDir("dir");
+	File f1("dir/1.file");
+	File f2("dir/2.file");
+
+	ASSERT_EQ(fDir.mkdir(), 0);
+	ASSERT_EQ(f1.mkdir(), 0);
+	ASSERT_EQ(f2.mkdir(), 0);
+
+	std::vector<std::string> v = fDir.getList();
+	ASSERT_EQ(v.size(), 2);
+	EXPECT_STREQ(v[0].c_str(), "1.file");
+	EXPECT_STREQ(v[1].c_str(), "2.file");
+
+	EXPECT_EQ(f1.remove(), 0);
+	EXPECT_EQ(f2.remove(), 0);
+	EXPECT_EQ(fDir.remove(), 0);
 }
 
 }
