@@ -200,8 +200,9 @@ int File::setMode(FileMode& mode)
 
 int File::renameTo(File& f)
 {
-	if (f.exists() || !this->exists())
+	if (f.exists() || !this->exists()) {
 		return -1;
+	}
 
 	return rename(m_path, f.getPath());
 }

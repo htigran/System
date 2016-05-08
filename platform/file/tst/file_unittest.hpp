@@ -23,7 +23,9 @@ struct FileTest : testing::Test
 	FileTest()
 	{
 		m_fileStr = new File("test_str.file");
-		m_filePath = new File("test_path.file");
+
+		Path p("test_path.file");
+		m_filePath = new File(p);
 	}
 
 	~FileTest()
@@ -91,11 +93,20 @@ TEST_F(FileTest, OpenWriteOpenRead)
 	EXPECT_EQ(m_fileStr->seek(0, FileTypes::SeekBegin), 0);
 	EXPECT_EQ(m_filePath->seek(0, FileTypes::SeekBegin), 0);
 
+	// EOF because file is open in write mode only
 	EXPECT_EQ(m_fileStr->readc(), FileTypes::Eof);
 	EXPECT_EQ(m_filePath->readc(), FileTypes::Eof);
 
+	EXPECT_EQ(m_fileStr->flush(), 0);
+	EXPECT_EQ(m_filePath->flush(), 0);
+
 	EXPECT_EQ(m_fileStr->close(), 0);
 	EXPECT_EQ(m_filePath->close(), 0);
+
+	EXPECT_EQ(m_fileStr->remove(), 0);
+	EXPECT_EQ(m_filePath->renameTo(*m_fileStr), 0);
+	EXPECT_EQ(m_fileStr->renameTo(*m_filePath), 0);
+	EXPECT_EQ(m_filePath->copyTo(*m_fileStr), 0);
 
 	EXPECT_EQ(m_fileStr->open(FileTypes::Read), 0);
 	EXPECT_EQ(m_filePath->open(FileTypes::Read), 0);
