@@ -19,28 +19,22 @@ using namespace platform;
 namespace platformTest
 {
 
-struct PathTest : testing::Test
+TEST(PathTest, AbsolutePath)
 {
-	Path* m_path;
+	Path p("/root/parent/file.ext");
+	EXPECT_STREQ(p.getAbsolutePath(), "/root/parent/file.ext");
+	EXPECT_STREQ(p.getName().c_str(), "file.ext");
+	EXPECT_STREQ(p.getParent().toString().c_str(), "/root/parent");
+	EXPECT_STREQ(p.toString().c_str(), "/root/parent/file.ext");
+	EXPECT_STREQ((const char*)p, "/root/parent/file.ext");
+}
 
-	PathTest()
-	{
-		m_path = new Path("/root/parent/file.ext");
-	}
-
-	~PathTest()
-	{
-		delete m_path;
-	}
-};
-
-TEST_F(PathTest, basic)
+TEST(PathTest, RelativePath)
 {
-	EXPECT_STREQ(m_path->getAbsolutePath(), "/root/parent/file.ext");
-	EXPECT_STREQ(m_path->getName().c_str(), "file.ext");
-	EXPECT_STREQ(m_path->getParent().toString().c_str(), "/root/parent");
-	EXPECT_STREQ(m_path->toString().c_str(), "/root/parent/file.ext");
-	EXPECT_STREQ((const char*)(*m_path), "/root/parent/file.ext");
+	Path p("file.ext");
+	Path ap = p.getAbsolutePath();
+	EXPECT_STREQ(ap.getName().c_str(), "file.ext");
+	EXPECT_EQ(ap[0], '/');
 }
 
 }
