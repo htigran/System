@@ -175,6 +175,7 @@ TEST(GetListTest, CurrentDir)
 	ASSERT_EQ(f2.mkdir(), 0);
 
 	std::vector<std::string> v = fDir.getList();
+	std::sort(v.begin(), v.end());
 	ASSERT_EQ(v.size(), 2);
 	EXPECT_STREQ(v[0].c_str(), "1.file");
 	EXPECT_STREQ(v[1].c_str(), "2.file");

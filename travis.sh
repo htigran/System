@@ -18,5 +18,5 @@ cd ..
 # compile and run our system
 cmake -DCMAKE_CXX_FLAGS=$CXX_FLAGS ../
 make
-#make test
-./bin/file_test
+make test
+#./bin/file_test
