@@ -33,9 +33,8 @@ endmacro(add_modules)
 ####################################################
 
 macro(addTest)
-    INCLUDE_DIRECTORIES(PUBLIC ../inc ${GTEST_INCLUDE_DIRS})
+    list(APPEND LIBS "-pthread")
     ADD_EXECUTABLE(${TEST_NAME} ${SOURCES})
-    #ADD_DEPENDENCIES(${PROJECT_TEST_NAME} ${DEPENDENCIES})
     TARGET_LINK_LIBRARIES(${TEST_NAME}
         ${GTEST_BOTH_LIBRARIES}
         ${LIBS}
@@ -44,6 +43,3 @@ macro(addTest)
 endmacro(addTest)
 
 add_modules()
-
-
-
