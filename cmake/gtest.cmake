@@ -2,7 +2,7 @@
 FIND_PACKAGE(Threads REQUIRED)
 FIND_PACKAGE(GTest QUIET)
 
-if (NOT GTEST_INCLUDE_DIRS)
+if (NOT GTest_FOUND)
 	set(GOOGLETEST_ROOT external/googletest/googletest)
 
     	set(GTEST_INCLUDE_DIRS 
